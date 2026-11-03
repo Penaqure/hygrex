@@ -2,18 +2,16 @@
 
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Check, Plus, Search } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
-import { categories, type Category, type NumberedEquipment } from "@/lib/data";
+import { categories, equipment, type Category, type Equipment } from "@/lib/data";
+import { HdImage } from "./HdImage";
 import { useQuote } from "./QuoteProvider";
-import { useSite } from "./SiteProvider";
 import { Reveal, SplitWords, ease } from "./motion";
 
 export function Fleet() {
   const [cat, setCat] = useState<Category | "all">("all");
   const [q, setQ] = useState("");
-  const { equipment } = useSite();
 
   const list = useMemo(
     () =>
@@ -22,7 +20,7 @@ export function Fleet() {
           (cat === "all" || e.category === cat) &&
           (q.trim() === "" || `${e.name} ${e.summary} ${e.applications.join(" ")}`.toLowerCase().includes(q.toLowerCase())),
       ),
-    [cat, q, equipment],
+    [cat, q],
   );
 
   return (
@@ -131,7 +129,6 @@ export function Fleet() {
 
 /** Short version of the catalog for the home page. */
 export function FleetPreview() {
-  const { equipment } = useSite();
   return (
     <section className="relative bg-sky-tint py-24 sm:py-32">
       <div className="container-x">
@@ -162,7 +159,7 @@ export function FleetPreview() {
   );
 }
 
-function FleetCard({ e }: { e: NumberedEquipment }) {
+function FleetCard({ e }: { e: Equipment }) {
   const { add, has } = useQuote();
   const ref = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0.5);
@@ -195,13 +192,11 @@ function FleetCard({ e }: { e: NumberedEquipment }) {
         style={{ background: glow }}
       />
       <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-b from-[#d9e7fa] to-[#eef3fa]">
-        <Image
-          src={e.image}
+        <HdImage
+          name={e.image}
           alt={e.name}
-          fill
-          quality={90}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.07]"
+          className="transition-transform duration-[1.2s] ease-out group-hover:scale-[1.07]"
         />
         <div className="absolute left-0 top-0 flex h-14 w-14 items-start justify-start bg-brand-700 p-3 [clip-path:polygon(0_0,100%_0,100%_60%,60%_100%,0_100%)]">
           <span className="display text-lg text-white">{e.no}</span>

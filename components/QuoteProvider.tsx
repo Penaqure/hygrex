@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { useSite } from "./SiteProvider";
+import { getEquipment } from "@/lib/data";
 
 type Item = { slug: string; qty: number };
 
@@ -26,16 +26,15 @@ export function QuoteProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
-  const { getEquipment } = useSite();
 
   useEffect(() => {
     try {
       const raw = localStorage.getItem(KEY);
-      // A saved list can name machines that have since been hidden or removed.
+      // A saved list can name machines that have since left the fleet.
       if (raw) setItems((JSON.parse(raw) as Item[]).filter((i) => getEquipment(i.slug)));
     } catch {}
     setReady(true);
-  }, [getEquipment]);
+  }, []);
 
   useEffect(() => {
     if (!ready) return;

@@ -5,9 +5,9 @@ import { ClipboardList, Menu, Phone, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { company } from "@/lib/data";
 import { Logo } from "./Logo";
 import { useQuote } from "./QuoteProvider";
-import { useSite } from "./SiteProvider";
 import { ease } from "./motion";
 
 const links = [
@@ -26,8 +26,8 @@ export function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [menu, setMenu] = useState(false);
   const { count, setOpen } = useQuote();
-  const { company } = useSite();
-  const pathname = usePathname();
+  // The static export uses trailing slashes, which the links below don't have.
+  const pathname = usePathname().replace(/(.)\/$/, "$1");
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   // These pages open on a dark header band, so the bar needs light text until it gains its background.
   // Machine pages and the 404 have light headers, so this must stay an exact match.

@@ -1,15 +1,14 @@
 import type { MetadataRoute } from "next";
-import { getCompany, getPublishedFleet } from "@/lib/store";
+import { company, equipment } from "@/lib/data";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 const pages = ["/about", "/fleet", "/crane-finder", "/how-it-works", "/faq", "/contact"];
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [{ url }, fleet] = await Promise.all([getCompany(), getPublishedFleet()]);
+export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    { url, priority: 1 },
-    ...pages.map((p) => ({ url: `${url}${p}`, priority: 0.7 })),
-    ...fleet.map((e) => ({ url: `${url}/fleet/${e.slug}`, priority: 0.8 })),
+    { url: company.url, priority: 1 },
+    ...pages.map((p) => ({ url: `${company.url}${p}/`, priority: 0.7 })),
+    ...equipment.map((e) => ({ url: `${company.url}/fleet/${e.slug}/`, priority: 0.8 })),
   ];
 }

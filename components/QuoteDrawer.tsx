@@ -2,20 +2,17 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ClipboardList, Mail, Minus, Plus, Trash2, X } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { emirates } from "@/lib/data";
+import { emirates, getEquipment } from "@/lib/data";
 import { buildMessage, durations, mailLink, whatsappLink } from "@/lib/enquiry";
-import { recordEnquiry } from "@/lib/record-enquiry";
+import { HdImage } from "./HdImage";
 import { WhatsAppIcon } from "./Logo";
 import { useQuote } from "./QuoteProvider";
-import { useSite } from "./SiteProvider";
 import { ease } from "./motion";
 
 export function QuoteDrawer() {
   const { open, setOpen, items, setQty, remove, clear, count } = useQuote();
-  const { company, getEquipment } = useSite();
   const [f, setF] = useState({ name: "", company: "", phone: "", emirate: "Dubai", start: "", duration: "Weekly", operator: "Not sure", notes: "" });
   const [touched, setTouched] = useState(false);
 
@@ -26,9 +23,9 @@ export function QuoteDrawer() {
   }, [setOpen]);
 
   const valid = f.name.trim() && f.phone.trim() && items.length > 0;
-  const msg = buildMessage({ ...f, items }, getEquipment);
-  const waHref = whatsappLink(msg, company.phones[0].wa);
-  const mailHref = mailLink(msg, company.email);
+  const msg = buildMessage({ ...f, items });
+  const waHref = whatsappLink(msg);
+  const mailHref = mailLink(msg);
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setF((p) => ({ ...p, [k]: e.target.value }));
 
@@ -39,7 +36,6 @@ export function QuoteDrawer() {
       return;
     }
     window.open(href, href.startsWith("mailto") ? "_self" : "_blank", "noopener");
-    recordEnquiry({ ...f, items }, "quote");
     e.preventDefault();
   };
 
@@ -105,7 +101,7 @@ export function QuoteDrawer() {
                             className="flex items-center gap-3 rounded-2xl border border-ink-900/8 p-2.5"
                           >
                             <div className="relative h-14 w-16 shrink-0 overflow-hidden rounded-xl bg-steel">
-                              <Image src={e.image} alt="" fill sizes="64px" className="object-cover" />
+                              <HdImage name={e.image} sizes="64px" />
                             </div>
                             <div className="min-w-0 flex-1">
                               <p className="truncate text-sm font-bold">{e.name}</p>

@@ -1,9 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { seedCompany } from "@/lib/seed";
+import { Footer, FloatingActions } from "@/components/Contact";
+import { Navbar } from "@/components/Navbar";
+import { Providers } from "@/components/Providers";
+import { QuoteDrawer } from "@/components/QuoteDrawer";
+import { company } from "@/lib/data";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(seedCompany.url),
+  metadataBase: new URL(company.url),
   title: {
     default: "HYGERX Heavy Equipment Rental | Cranes, Excavators & Loaders in Dubai, UAE",
     template: "%s | HYGERX Heavy Equipment Rental",
@@ -21,10 +25,30 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#1546d1" };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: company.name,
+  url: company.url,
+  email: company.email,
+  telephone: company.phones.map((p) => p.label),
+  address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
+  areaServed: "United Arab Emirates",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body>{children}</body>
+      <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <Providers>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <QuoteDrawer />
+          <FloatingActions />
+        </Providers>
+      </body>
     </html>
   );
 }

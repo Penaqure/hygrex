@@ -1,9 +1,8 @@
 import type { MetadataRoute } from "next";
-import { getCompany } from "@/lib/store";
+import { company } from "@/lib/data";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
-export default async function robots(): Promise<MetadataRoute.Robots> {
-  const { url } = await getCompany();
-  return { rules: { userAgent: "*", allow: "/", disallow: "/admin" }, sitemap: `${url}/sitemap.xml` };
+export default function robots(): MetadataRoute.Robots {
+  return { rules: { userAgent: "*", allow: "/" }, sitemap: `${company.url}/sitemap.xml` };
 }

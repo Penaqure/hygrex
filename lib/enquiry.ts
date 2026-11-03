@@ -1,4 +1,4 @@
-import type { NumberedEquipment } from "./data";
+import { company, getEquipment } from "./data";
 
 export type Enquiry = {
   name: string;
@@ -15,7 +15,7 @@ export type Enquiry = {
 
 export const durations = ["Daily", "Weekly", "Monthly", "Long term (3+ months)"];
 
-export function buildMessage(e: Enquiry, getEquipment: (slug: string) => NumberedEquipment | undefined) {
+export function buildMessage(e: Enquiry) {
   const lines = ["Hello HYGERX, I'd like a rental quote.", ""];
   if (e.items?.length) {
     lines.push("Equipment:");
@@ -36,7 +36,8 @@ export function buildMessage(e: Enquiry, getEquipment: (slug: string) => Numbere
   return lines.join("\n");
 }
 
-export const whatsappLink = (text: string, number: string) => `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+export const whatsappLink = (text: string, number = company.phones[0].wa) =>
+  `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
 
-export const mailLink = (text: string, email: string, subject = "Equipment rental enquiry") =>
-  `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+export const mailLink = (text: string, subject = "Equipment rental enquiry") =>
+  `mailto:${company.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;

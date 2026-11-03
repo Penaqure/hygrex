@@ -91,6 +91,76 @@ export const hdImages = {
     ],
     "blur": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAACQBACdASoYABIAPu1erE2ppSSmMBgMATAdiUAVIL/8A8/vGcFgNIVXaRgOaAAA/UDbbcrVRPx7bmFhOCJXzPqnKB0K7GUNHjJwOec1NdgV1nJwA7ARgpaWZNJI2fzZQTfDeCcnsxjywo7whA7Db6PLjwzeER0AAAA="
   },
+  "fleet-backhoe": {
+    "width": 1600,
+    "height": 1200,
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "blur": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAADQBACdASoYABIAPu1mq0+ppaOiMBgIATAdiWUAvzgLJB7AH0FgLHrb7cy3MLo08AD9TAha2s1+RxU3IU5YJBSZjtO6uOjy1OFMxYYz4qDJfv1vz5/yaKn2mDdRNzD3PcmBv6fKcZF+teZM0QCRL8XoGLlZ61xPPf7ILO7I0jWRaafICPJmQAAA"
+  },
+  "fleet-crawler-crane": {
+    "width": 1600,
+    "height": 1200,
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "blur": "data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAADwBACdASoYABIAPu1irFAppSQisBgIATAdiWUArhwPKiueCgmk6ugl2L/YAyTh4fAA/R9sRYFpVn7mj2hE75Bcas0ZQGlrlOw23hkKZoxnpe4ucMYLQgK+yKJmuadXwjZhqCrVLfABUJKf6NV6qocTsedqbfsg3zGZJQMwNxxnl09WWyRebVuAAAA="
+  },
+  "fleet-excavator": {
+    "width": 1600,
+    "height": 1200,
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "blur": "data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAACQBQCdASoYABIAPu1or1CppaQiqAqpMB2JbACxH1gYBtgLslAMT5qtPFLJELQFEa/U37wfWAD+cNrc+QOF2hbGCa9P9Yz7qAS0OXwW7r2392SNWus1SBli0Er0uhS33w7S90Er1bfcX6btR6QGpsCyPugJwGgBEliQiPmpeYPDCaw3WXLEJTfRbCuVfP+u+Q2u/vxc4znIlK6d4brPsB30DcreOVvnYei8UAleAAAAAA=="
+  },
+  "fleet-mobile-crane": {
+    "width": 1600,
+    "height": 1200,
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "blur": "data:image/webp;base64,UklGRtYAAABXRUJQVlA4IMoAAAAwBQCdASoYABIAPu1sqlEppaOiqAqpMB2JQBOmYHA/BMOY8QCPTfX93i0ydiI/55pIAAD+4M17krKkK9lpA0c+3VTeVuXq+IUq+7dknF8czr7cHp3My2Y/xDNYFzmi2t+/xvemXtCg/Qtojpkh/C94pZvAd7m2ATI8lftLu1wXEhKV//dgrGFbV06oRHjbe3vE13lKDoRR5EUVaqBupayHEBhFK6hCiCJeodZX3W3nHfTJbHHkne4GZxenMeuDsXemkbs1P7QphAAA"
+  },
+  "fleet-skid-steer": {
+    "width": 1600,
+    "height": 1200,
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "blur": "data:image/webp;base64,UklGRsIAAABXRUJQVlA4ILYAAABQBQCdASoYABIAPu1qrlCppaQiqAqpMB2JQBdkH+AwUJ7lqMDc0u8JdSH7zph/49VSyQAA/d0TRAPLTZUsyHr6r411NHGpZ40yMhCT01KkDPSnIJosStC31A2h32wTjKIzlY3X6X/7vBunjIkIjcNzT+JRsb4nxSdifVjtdxRLydfd/wC8djpTCnQ0b+gCs7/54G9mjSIxdVQix5AewzsSVCEAdqEo+P/1GWalefbBix0AAAAAAA=="
+  },
+  "fleet-telehandler": {
+    "width": 1600,
+    "height": 1200,
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "blur": "data:image/webp;base64,UklGRs4AAABXRUJQVlA4IMIAAACQBQCdASoYABIAPu1sq1EppaOiqAqpMB2JZQDI9NiqQPeeRtBIkZMDqYKQ8PAqfgibL5gQoAD2vqCsTGy/bb9cTr6Clc81xn+mp/PzX3HUWs3DblVaBs7+hAm8aFwF9TFHLBuWqkR2/wZLsoo2JCnkzgT48/S5s4p6g/EI15OohUgIqHg+UAI/jFqrHN87Sn5oXi5ZMdMTy0Vx++JgNKTdeZIYwlZYuJ7OFAZssBImW85GpKy7H0adkMANnhCiAAAAAA=="
+  },
+  "fleet-wheel-loader": {
+    "width": 1600,
+    "height": 1200,
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "blur": "data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAABQBQCdASoYABIAPu1qq1EppaOiqAqpMB2JQBajarg0iQC8edO0sGqcAFIHVuJJvhlNPKgA/lIo41JtY3zO1GjYwvfV6YjCMSp1gi+NJx5KKbzc6WXaRGPRjW9pulibVVNtGnWYjXhtZTePxNmHP6/ujz4SYtcGl0PrlJeBq4sFLb8YharHPzbJf+VapYprwrINscTk0I0P7GrX0WePGrRAUMmAAA=="
+  },
   "hero": {
     "width": 3840,
     "height": 2560,

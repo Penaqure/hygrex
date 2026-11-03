@@ -2,11 +2,11 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Info, Plus } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { getEquipment } from "@/lib/data";
+import { HdImage } from "./HdImage";
 import { useQuote } from "./QuoteProvider";
-import { useSite } from "./SiteProvider";
 import { Reveal, SplitWords, ease } from "./motion";
 
 type Ground = "firm" | "soft";
@@ -21,7 +21,6 @@ export function CraneFinder() {
   const [pattern, setPattern] = useState<Pattern>("multi");
   const [job, setJob] = useState<Job>("heavy");
   const { add } = useQuote();
-  const { getEquipment } = useSite();
 
   const result = useMemo(() => {
     if (job === "materials")
@@ -57,8 +56,6 @@ export function CraneFinder() {
   }, [load, ground, pattern, job]);
 
   const eq = result.slug ? getEquipment(result.slug) : null;
-  // The recommended machine may have been hidden or removed in the admin panel.
-  const why = result.slug && !eq ? "Share your lift details and our team will advise on the best approach." : result.why;
   const pct = (v: number) => `${(v / MAX) * 100}%`;
 
   return (
@@ -183,7 +180,7 @@ export function CraneFinder() {
             <div className="relative h-full overflow-hidden rounded-3xl bg-white text-ink-900">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={(result.slug ?? "none") + why}
+                  key={(result.slug ?? "none") + result.why}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -16 }}
@@ -192,7 +189,7 @@ export function CraneFinder() {
                 >
                   <div className="relative aspect-[16/10] bg-gradient-to-b from-[#d9e7fa] to-[#eef3fa]">
                     {eq ? (
-                      <Image src={eq.image} alt={eq.name} fill quality={90} sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
+                      <HdImage name={eq.image} alt={eq.name} sizes="(min-width:1024px) 40vw, 100vw" />
                     ) : (
                       <div className="grid h-full place-items-center">
                         <p className="display text-6xl text-brand-600/30">500T+</p>
@@ -205,7 +202,7 @@ export function CraneFinder() {
                   <div className="flex flex-1 flex-col p-6 sm:p-7">
                     <h3 className="text-2xl font-extrabold">{eq ? eq.name : "Specialist lift"}</h3>
                     {eq && <p className="font-bold text-brand-600">{eq.capacity}</p>}
-                    <p className="mt-3 text-sm leading-relaxed text-ink-600">{why}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-600">{result.why}</p>
                     <div className="mt-auto flex flex-wrap gap-2 pt-6">
                       {eq ? (
                         <>

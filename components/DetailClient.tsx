@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Check, Plus } from "lucide-react";
+import type { HdImageName } from "@/lib/hd-images";
+import { HdImage } from "./HdImage";
 import { useQuote } from "./QuoteProvider";
 
 export function AddToQuoteButton({ slug, className = "btn-primary" }: { slug: string; className?: string }) {
@@ -15,7 +17,7 @@ export function AddToQuoteButton({ slug, className = "btn-primary" }: { slug: st
   );
 }
 
-export function DetailHeroImage({ src, alt }: { src: string; alt: string }) {
+export function DetailHeroImage({ name, alt }: { name: HdImageName; alt: string }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.94, rotate: -1.5 }}
@@ -23,8 +25,7 @@ export function DetailHeroImage({ src, alt }: { src: string; alt: string }) {
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
       className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-gradient-to-b from-[#d9e7fa] to-[#eef3fa] shadow-2xl shadow-ink-900/20"
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} className="h-full w-full object-cover" />
+      <HdImage name={name} alt={alt} priority sizes="(min-width: 1024px) 50vw, 100vw" />
     </motion.div>
   );
 }

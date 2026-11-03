@@ -4,17 +4,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp, Check, Globe, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { emirates } from "@/lib/data";
+import { company, emirates, equipment, getEquipment } from "@/lib/data";
 import { buildMessage, mailLink, whatsappLink } from "@/lib/enquiry";
-import { recordEnquiry } from "@/lib/record-enquiry";
 import { HdImage } from "./HdImage";
 import { Logo, WhatsAppIcon } from "./Logo";
 import { useQuote } from "./QuoteProvider";
-import { useSite } from "./SiteProvider";
 import { Reveal, SplitWords, ease } from "./motion";
 
 export function Contact() {
-  const { company, equipment, getEquipment } = useSite();
   const [f, setF] = useState({ name: "", company: "", phone: "", email: "", emirate: "Dubai", equipment: "", notes: "" });
   const [err, setErr] = useState(false);
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
@@ -23,11 +20,9 @@ export function Contact() {
   const send = (via: "wa" | "mail") => {
     if (!f.name.trim() || !f.phone.trim()) return setErr(true);
     setErr(false);
-    const enquiry = { ...f, items: f.equipment ? [{ slug: f.equipment, qty: 1 }] : [] };
-    const msg = buildMessage(enquiry, getEquipment);
-    if (via === "wa") window.open(whatsappLink(msg, company.phones[0].wa), "_blank", "noopener");
-    else window.location.href = mailLink(msg, company.email);
-    recordEnquiry(enquiry, "contact");
+    const msg = buildMessage({ ...f, items: f.equipment ? [{ slug: f.equipment, qty: 1 }] : [] });
+    if (via === "wa") window.open(whatsappLink(msg), "_blank", "noopener");
+    else window.location.href = mailLink(msg);
   };
 
   return (
@@ -152,7 +147,6 @@ const pages = [
 ];
 
 export function Footer() {
-  const { company, equipment } = useSite();
   return (
     <footer className="bg-ink-950 text-white/70">
       <div className="container-x grid gap-10 py-16 md:grid-cols-12">
@@ -224,7 +218,6 @@ export function Footer() {
 export function FloatingActions() {
   const [show, setShow] = useState(false);
   const { toast, setOpen } = useQuote();
-  const { company, getEquipment } = useSite();
   useEffect(() => {
     const on = () => setShow(window.scrollY > 700);
     on();
@@ -251,7 +244,7 @@ export function FloatingActions() {
           )}
         </AnimatePresence>
         <motion.a
-          href={whatsappLink("Hello HYGERX, I have an equipment rental enquiry.", company.phones[0].wa)}
+          href={whatsappLink("Hello HYGERX, I have an equipment rental enquiry.")}
           target="_blank"
           rel="noopener"
           initial={{ scale: 0 }}

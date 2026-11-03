@@ -4,12 +4,11 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Eye, Target } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
+import { equipment } from "@/lib/data";
 import { HdImage } from "./HdImage";
-import { useSite } from "./SiteProvider";
 import { Reveal, SplitWords, rise, stagger } from "./motion";
 
 export function Marquee() {
-  const { equipment } = useSite();
   const items = [...equipment, ...equipment];
   return (
     <div className="relative overflow-hidden border-y border-ink-900/8 bg-ink-950 py-5 text-white">

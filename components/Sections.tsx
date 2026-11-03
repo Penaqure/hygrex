@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { ClipboardList, Handshake, HardHat, MapPin, Minus, Plus, Send, ShieldCheck, Truck, Users, Wrench } from "lucide-react";
 import { useRef, useState } from "react";
-import { emirates, type Faq } from "@/lib/data";
+import { emirates, faqs } from "@/lib/data";
 import { HdImage } from "./HdImage";
 import { Reveal, SplitWords, ease, rise, stagger } from "./motion";
 
@@ -163,7 +163,7 @@ export function Coverage() {
 }
 
 /* ---------------- FAQ ---------------- */
-export function FAQ({ faqs }: { faqs: Faq[] }) {
+export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="faq" className="py-24 sm:py-32">
@@ -180,7 +180,7 @@ export function FAQ({ faqs }: { faqs: Faq[] }) {
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
-              <Reveal key={f.id} delay={i * 0.04}>
+              <Reveal key={f.q} delay={i * 0.04}>
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}

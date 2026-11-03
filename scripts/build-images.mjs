@@ -31,7 +31,7 @@ for (const file of (await readdir(SOURCE)).filter((f) => f.endsWith(".jpg")).sor
     if (!(await isCurrent(`${OUTPUT}/${name}-${w}.avif`, input))) await resized.clone().avif({ quality: 60, effort: 4 }).toFile(`${OUTPUT}/${name}-${w}.avif`);
     if (!(await isCurrent(`${OUTPUT}/${name}-${w}.webp`, input))) await resized.clone().webp({ quality: 82 }).toFile(`${OUTPUT}/${name}-${w}.webp`);
   }
-  await sharp(input).resize({ width: 1920 }).jpeg({ quality: 82, progressive: true }).toFile(`${OUTPUT}/${name}.jpg`);
+  await sharp(input).resize({ width: 1920, withoutEnlargement: true }).jpeg({ quality: 82, progressive: true }).toFile(`${OUTPUT}/${name}.jpg`);
 
   // A tiny inline preview paints with the HTML, so the space is never empty while the real file arrives.
   const blur = await sharp(input).resize({ width: 24 }).webp({ quality: 40 }).toBuffer();

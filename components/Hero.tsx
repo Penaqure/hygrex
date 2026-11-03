@@ -4,8 +4,8 @@ import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion"
 import { ArrowRight, MapPin, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { equipment } from "@/lib/data";
 import { HdImage } from "./HdImage";
-import { useSite } from "./SiteProvider";
 import { Counter, ease } from "./motion";
 
 const words = ["Rent", "Build", "Move", "Grow"];
@@ -19,7 +19,6 @@ export function Hero() {
   const fade = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const xRotate = useTransform(scrollYProgress, [0, 1], [0, 40]);
 
-  const { equipment } = useSite();
   const [w, setW] = useState(0);
   useEffect(() => {
     const t = setInterval(() => setW((i) => (i + 1) % words.length), 2200);
