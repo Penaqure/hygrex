@@ -163,7 +163,7 @@ export const hdImages = {
   },
   "hero": {
     "width": 3840,
-    "height": 2560,
+    "height": 2400,
     "widths": [
       640,
       960,
@@ -172,7 +172,7 @@ export const hdImages = {
       2560,
       3840
     ],
-    "blur": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdMoADVXBabv6ymuh4AAD+dmGafaTFEyFJ/+CKahnlY+CKQI6LTKx5Fplz7THTNMuareNM/TU65wuq4lxt+VNTVBlj1tYY17aNFjaWE6gNxaBdwi8c7hlK90yiynNHUt/YOSjsV9VMDhDUOiAA"
+    "blur": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAABQBACdASoYAA8APu1iqU2ppaOiMAgBMB2JYgCdAYt832hi1zTIUF4Qe8ogAP7vwpluacZBkUbxhjwO5Y51Yh/ao69qDrOAXXyX3/OqAA8HPMRS6p/JiFrfLPZlAfWc6LSekU5ibnCEhFn0gln13Ut4pTNyEjaR1hV9r1fABkzMQRxW+wxYYwAA"
   },
   "why-us": {
     "width": 3840,

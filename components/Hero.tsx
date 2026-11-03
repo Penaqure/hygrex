@@ -17,7 +17,6 @@ export function Hero() {
   const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
   const fade = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const xRotate = useTransform(scrollYProgress, [0, 1], [0, 40]);
 
   const [w, setW] = useState(0);
   useEffect(() => {
@@ -26,19 +25,9 @@ export function Hero() {
   }, []);
 
   return (
-    <section ref={ref} className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-gradient-to-b from-[#dceafc] via-[#f1f6fd] to-white pt-[72px]">
-      {/* diagonal brand slashes */}
-      <motion.div
-        aria-hidden
-        style={{ rotate: xRotate }}
-        className="pointer-events-none absolute -right-40 top-10 -z-10 h-[620px] w-[620px] opacity-70"
-      >
-        <div className="absolute left-1/2 top-0 h-full w-28 -translate-x-1/2 rotate-45 rounded-[40px] bg-gradient-to-b from-brand-500/25 to-brand-500/0" />
-        <div className="absolute left-1/2 top-0 h-full w-28 -translate-x-1/2 -rotate-45 rounded-[40px] bg-gradient-to-b from-ink-900/10 to-transparent" />
-      </motion.div>
-
-      <motion.div style={{ y: textY, opacity: fade }} className="container-x relative z-10 grid flex-1 items-start gap-10 pt-8 sm:pt-12 lg:grid-cols-12 lg:pt-14">
-        <div className="lg:col-span-9">
+    <section ref={ref} className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-[#f1f6fd] pt-[72px] xl:min-h-[max(100svh,62.5vw)]">
+      <motion.div style={{ y: textY, opacity: fade }} className="container-x relative z-10 flex-1 pt-8 sm:pt-12 xl:pt-8">
+        <div className="lg:max-w-[75%]">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -52,7 +41,7 @@ export function Hero() {
             Heavy equipment rental · Dubai, UAE
           </motion.p>
 
-          <h1 className="display text-[clamp(2.6rem,6.4vw,5.6rem)] text-ink-950">
+          <h1 className="display text-[clamp(2.6rem,5vw,5.2rem)] text-ink-950">
             {["Powering", "your projects"].map((line, i) => (
               <span key={line} className="block overflow-hidden pb-[0.06em]">
                 <motion.span
@@ -81,13 +70,13 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease, delay: 0.7 }}
-            className="mt-7 max-w-xl"
+            className="mt-6 max-w-xl"
           >
             <p className="text-base leading-relaxed text-ink-600 sm:text-lg">
               Reliable, inspection-ready cranes, excavators, loaders and more — on short-term or long-term rental, delivered
               across the UAE.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link href="/fleet" className="btn-primary group">
                 Explore the fleet
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -99,40 +88,41 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Rent · Build · Move · Grow ticker */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, ease, delay: 0.9 }}
-          className="hidden lg:col-span-3 lg:flex lg:justify-end lg:pt-6"
-        >
-          <div className="text-right">
-            <p className="eyebrow text-ink-500">We help you</p>
-            <div className="relative mt-2 h-16 overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={words[w]}
-                  initial={{ y: "100%", opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: "-100%", opacity: 0 }}
-                  transition={{ duration: 0.5, ease }}
-                  className="display block text-6xl text-brand-600"
-                >
-                  {words[w]}
-                </motion.span>
-              </AnimatePresence>
-            </div>
-            <div className="mt-3 flex justify-end gap-1.5">
-              {words.map((x, i) => (
-                <span key={x} className={`h-1 rounded-full transition-all duration-500 ${i === w ? "w-8 bg-brand-500" : "w-3 bg-ink-900/15"}`} />
-              ))}
-            </div>
+      </motion.div>
+
+      {/* Rent · Build · Move · Grow ticker */}
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.9, ease, delay: 0.9 }}
+        className="absolute right-8 top-[120px] z-10 hidden lg:block xl:right-[26vw]"
+      >
+        <div className="text-right">
+          <p className="eyebrow text-ink-500">We help you</p>
+          <div className="relative mt-2 h-16 overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={words[w]}
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "-100%", opacity: 0 }}
+                transition={{ duration: 0.5, ease }}
+                className="display block text-6xl text-brand-600"
+              >
+                {words[w]}
+              </motion.span>
+            </AnimatePresence>
           </div>
-        </motion.div>
+          <div className="mt-3 flex justify-end gap-1.5">
+            {words.map((x, i) => (
+              <span key={x} className={`h-1 rounded-full transition-all duration-500 ${i === w ? "w-8 bg-brand-500" : "w-3 bg-ink-900/15"}`} />
+            ))}
+          </div>
+        </div>
       </motion.div>
 
       {/* Equipment lineup */}
-      <div className="relative mt-6 h-[44vh] min-h-[280px] sm:h-[52vh]">
+      <div className="relative mt-6 aspect-[16/10] w-full xl:absolute xl:inset-0 xl:-z-10 xl:mt-0 xl:aspect-auto">
         <motion.div style={{ y: imgY, scale: imgScale }} className="absolute inset-0">
           <motion.div
             initial={{ scale: 1.08 }}
@@ -140,19 +130,24 @@ export function Hero() {
             transition={{ duration: 1.6, ease }}
             className="absolute inset-0"
           >
-            <HdImage name="hero" alt="Excavator digging on a construction site" priority sizes="(max-width: 767px) 600px, 100vw" position="50% 62%" />
+            <HdImage
+              name="hero"
+              alt="HYGERX equipment lineup: mobile crane, crawler crane, excavator, wheel loader, skid steer, backhoe loader and telehandler"
+              priority
+              position="50% 100%"
+            />
           </motion.div>
         </motion.div>
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-[#f1f6fd] to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-950/70 to-transparent" />
+      </div>
 
-        {/* stat bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease, delay: 1.1 }}
-          className="container-x absolute inset-x-0 bottom-5 sm:bottom-8"
-        >
+      {/* stat bar */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, ease, delay: 1.1 }}
+        className="relative z-10 bg-ink-950 py-4 xl:absolute xl:inset-x-0 xl:bottom-4 xl:bg-transparent xl:py-0"
+      >
+        <div className="container-x">
           <div className="grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/10 text-white backdrop-blur-xl sm:grid-cols-4">
             <Stat value={<Counter to={equipment.length} />} label="Equipment categories" />
             <Stat value={<Counter to={500} suffix="T" />} label="Max crane capacity" />
@@ -164,8 +159,8 @@ export function Hero() {
               </div>
             </div>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
