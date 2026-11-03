@@ -1,10 +1,7 @@
-// Machine and banner photos, all from Wikimedia Commons. Some licences require this credit, so keep it while the photo is in use.
+// Banner and section photos, all from Wikimedia Commons. Machine images come from the HYGERX brochure. Some licences require this credit, so keep it while the photo is in use.
 export const photoCredits: { usedFor: string; title: string; author: string; license: string; source: string }[] = [
   {"usedFor": "The About banner", "title": "Caterpillar 330 excavator on a pile of dirt", "author": "Matthew T Rader", "license": "CC BY-SA 4.0", "source": "https://commons.wikimedia.org/wiki/File:Caterpillar_330_excavator_on_a_pile_of_dirt.jpg"},
   {"usedFor": "The Fleet banner", "title": "Caterpillar wheel loader on Rixö quay", "author": "W.carter", "license": "CC0", "source": "https://commons.wikimedia.org/wiki/File:Caterpillar_wheel_loader_on_Rix%C3%B6_quay.jpg"},
-  {"usedFor": "Skid steers", "title": "Bobcat S70 Agritechnica 2025 (DSC05718), background removed", "author": "MarcelX42", "license": "CC BY-SA 4.0", "source": "https://commons.wikimedia.org/wiki/File:Bobcat_S70_Agritechnica_2025_(DSC05718).jpg"},
-  {"usedFor": "Backhoe loaders", "title": "JCB 3CX - Gilo Jerusalem 2022-06-05 IZE-003, background removed and sticker retouched", "author": "Dr. Zachi Evenor", "license": "CC BY-SA 4.0", "source": "https://commons.wikimedia.org/wiki/File:JCB_3CX_-_Gilo_Jerusalem_2022-06-05_IZE-003.jpg"},
-  {"usedFor": "Telehandlers", "title": "Merlo P 28.8 L, background removed", "author": "MerloD", "license": "CC BY-SA 3.0", "source": "https://commons.wikimedia.org/wiki/File:Merlo_P_28.8_L.jpg"},
   {"usedFor": "The Contact banner", "title": "Doosan DX85R-3 excavator in Remiremont, France - 2022-05-03 - 01", "author": "Mathieu Kappler", "license": "CC BY-SA 4.0", "source": "https://commons.wikimedia.org/wiki/File:Doosan_DX85R-3_excavator_in_Remiremont,_France_-_2022-05-03_-_01.jpg"},
   {"usedFor": "Home page hero", "title": "Caterpillar 330 Excavator", "author": "Matthew T Rader", "license": "CC BY-SA 4.0", "source": "https://commons.wikimedia.org/wiki/File:Caterpillar_330_Excavator.jpg"},
   {"usedFor": "About section", "title": "Burj Dubai skyline (4220501733)", "author": "Joi Ito from Cambridge, MA, USA", "license": "CC BY 2.0", "source": "https://commons.wikimedia.org/wiki/File:Burj_Dubai_skyline_(4220501733).jpg"},

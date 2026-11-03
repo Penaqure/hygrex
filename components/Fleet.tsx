@@ -97,21 +97,7 @@ export function Fleet() {
             ))}
             {cat === "all" && q === "" && (
               <motion.li key="cta" layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="sm:col-span-2 lg:col-span-2">
-                <div className="relative flex h-full min-h-72 flex-col justify-between overflow-hidden rounded-3xl bg-brand-700 p-8 text-white sm:p-10">
-                  <div className="grid-lines absolute inset-0" aria-hidden />
-                  <svg viewBox="0 0 24 24" className="absolute -right-10 -top-10 h-64 w-64 text-white/10" aria-hidden>
-                    <path d="M4 4l16 16M20 4L4 20" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
-                  </svg>
-                  <div className="relative">
-                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand-200">The right equipment for every challenge</p>
-                    <h3 className="display mt-4 max-w-md text-3xl sm:text-4xl">Need a specific model or capacity?</h3>
-                    <p className="mt-3 max-w-md text-white/75">Tell us your project and our team will match the right machine — short-term or long-term.</p>
-                  </div>
-                  <div className="relative mt-8 flex flex-wrap gap-3">
-                    <Link href="/contact" className="btn bg-white text-brand-700 hover:bg-brand-50">Talk to our team</Link>
-                    <Link href="/crane-finder" className="btn border border-white/30 text-white hover:bg-white/10">Try the Crane Finder</Link>
-                  </div>
-                </div>
+                <FleetCta />
               </motion.li>
             )}
           </AnimatePresence>
@@ -127,7 +113,7 @@ export function Fleet() {
   );
 }
 
-/** Short version of the catalog for the home page. */
+/** The catalog on the home page, without search or filters. */
 export function FleetPreview() {
   return (
     <section className="relative bg-sky-tint py-24 sm:py-32">
@@ -148,14 +134,37 @@ export function FleetPreview() {
           </Reveal>
         </div>
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {equipment.slice(0, 6).map((e, i) => (
+          {equipment.map((e, i) => (
             <Reveal as="li" key={e.slug} delay={i * 0.05}>
               <FleetCard e={e} />
             </Reveal>
           ))}
+          <Reveal as="li" className="sm:col-span-2 lg:col-span-2">
+            <FleetCta />
+          </Reveal>
         </ul>
       </div>
     </section>
+  );
+}
+
+function FleetCta() {
+  return (
+    <div className="relative flex h-full min-h-72 flex-col justify-between overflow-hidden rounded-3xl bg-brand-700 p-8 text-white sm:p-10">
+      <div className="grid-lines absolute inset-0" aria-hidden />
+      <svg viewBox="0 0 24 24" className="absolute -right-10 -top-10 h-64 w-64 text-white/10" aria-hidden>
+        <path d="M4 4l16 16M20 4L4 20" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
+      </svg>
+      <div className="relative">
+        <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand-200">The right equipment for every challenge</p>
+        <h3 className="display mt-4 max-w-md text-3xl sm:text-4xl">Need a specific model or capacity?</h3>
+        <p className="mt-3 max-w-md text-white/75">Tell us your project and our team will match the right machine — short-term or long-term.</p>
+      </div>
+      <div className="relative mt-8 flex flex-wrap gap-3">
+        <Link href="/contact" className="btn bg-white text-brand-700 hover:bg-brand-50">Talk to our team</Link>
+        <Link href="/crane-finder" className="btn border border-white/30 text-white hover:bg-white/10">Try the Crane Finder</Link>
+      </div>
+    </div>
   );
 }
 
